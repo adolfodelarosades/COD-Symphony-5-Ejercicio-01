@@ -6,5 +6,26 @@
   {{ include('comunes/_menu.html.twig') }}  
   <main class="container py-4">
     <h1 class="text-center">Autores</h1>
+
+    {% dump autores %} <!-- Lo saca a la consola-->
+    
+    <table class="table table-striped">
+    <thead>
+        <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">Tipo</th>       
+        </tr>
+    </thead>
+    <tbody>
+        {% for autor in autores %}
+        <tr>
+            <td> {{ autor.id }}</td>
+            <td> {{ autor.nombre }}</td>
+            <td> {{ autor.tipo }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+    </table>
   </main>
 {% endblock %}
