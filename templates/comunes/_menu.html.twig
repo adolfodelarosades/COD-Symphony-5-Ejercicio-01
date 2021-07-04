@@ -1,0 +1,23 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <img src="{{ asset('images/fondos-01.png')}}" width="50px"/><a class="navbar-brand" href="{{ path('fondos')}}"> F O N D O S</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="{{ path('fondos')}}">Fondos</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{{ path('editoriales')}}">Editoriales</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{{ path('autores')}}">Autores</a>
+      </li>
+    </ul>
+    <form class="form-inline" action="{{path('root')}}">
+      <button class="btn btn-outline-secondary my-2 my-sm-0" type="submit">Logout</button>
+  </form>
+  </div>
+</nav>
