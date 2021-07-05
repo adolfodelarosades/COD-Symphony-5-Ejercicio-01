@@ -9,12 +9,18 @@
 
     {% dump autores %} <!-- Lo saca a la consola-->
     
+    <p> </p>
+    <div class="text-left">
+      <a class="btn btn-secondary" href="{{ path('autor_nuevo')}}" role="button">Nuevo Autor</a>
+    </div>
+    <p> </p>
     <table class="table table-striped">
     <thead>
         <tr>
         <th scope="col">ID</th>
         <th scope="col">Nombre</th>
-        <th scope="col">Tipo</th>       
+        <th scope="col">Tipo</th>
+        <th scope="col">Acciones</th>       
         </tr>
     </thead>
     <tbody>
@@ -23,6 +29,11 @@
             <td> {{ autor.id }}</td>
             <td> {{ autor.nombre }}</td>
             <td> {{ autor.tipo }}</td>
+            <td>
+              <a href="{{ path('autor_detalle', {id: autor.id}) }}"><i class="fa fa-search" style="font-size:24px;color:grey;"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <a href="{{ path('autor_delete', {id: autor.id}) }}"><i class="fa fa-trash-o" style="font-size:24px;color:grey;"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <a href="{{ path('autor_modificar', {id: autor.id}) }}"><i class="fa fa-pencil" style="font-size:24px;color:grey;"></i></a>
+            </td>
         </tr>
         {% endfor %}
     </tbody>

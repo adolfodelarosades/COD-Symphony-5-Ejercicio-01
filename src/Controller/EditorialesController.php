@@ -51,8 +51,8 @@ class EditorialesController extends AbstractController
         $em->persist($editorial);
         
         try {
-            $editorial->getId();
             $em->flush();
+            $editorial->getId();
         } catch(\Exception $ex) {
             $ex->getMessage();
             $ex->getCode();

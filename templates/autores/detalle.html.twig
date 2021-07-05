@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Autor{% endblock %}
+
+{% block body %}
+  {{ include('comunes/_menu.html.twig') }}  
+  <main class="container py-4">
+    <h1 class="text-center">Autores</h1>
+
+    {% dump autor %} <!-- Lo saca a la consola-->
+    
+    <p> </p>
+    <div class="text-right">
+      <a class="btn btn-secondary" href="{{ path('autores')}}" role="button">Regresar</a>
+    </div>
+    <p> </p>
+    <table class="table ">
+    <tbody>
+        <tr>
+            <th scope="col">ID:</th><td> {{ autor.id }}</td>
+        </tr>
+        <tr>
+            <th scope="col">Nombre:</th><td> {{ autor.nombre }}</td>            
+        </tr>
+        <tr>
+            <th scope="col">Tipo:</th><td> {{ autor.tipo }}</td>
+        </tr>
+    </tbody>
+    </table>
+  </main>
+{% endblock %}
