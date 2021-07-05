@@ -36,7 +36,7 @@ class EditorialesController extends AbstractController
     }
 
     /**
-     * @Route("/create", name="editorial_create")
+     * @Route("/editoriales/create", name="editorial_create")
      */
     public function create(Request $request, EntityManagerInterface $em): Response
     { 
@@ -60,6 +60,55 @@ class EditorialesController extends AbstractController
         }
 
         // 3) redirigir al formulario
+        return $this->redirectToRoute("editoriales");
+    }
+
+    /**
+     * @Route("/editoriales/modificar/{id}", name="editorial_modificar")
+     */
+    public function modificar($id, EditorialRepository $editorialRepository): Response
+    {
+        dump($id);
+        $editorial = $editorialRepository->find($id);
+
+        if(!$editorial) {
+            return $this->render('comunes/recurso-no-encontrado.html.twig', [
+                'mensaje' => 'Esta Editorial No Existe.'
+            ]);
+        }
+        
+        return $this->render('editoriales/modificar.html.twig', [
+            'editorial' => $editorial
+        ]);
+    }
+
+    /**
+     * @Route("/editoriales/update/{id}", name="editorial_update")
+     */
+    public function update($id, EditorialRepository $editorialRepository, Request $request, EntityManagerInterface $em): Response
+    { 
+        // 1) recibir datos del formulario
+        $nombre = $request->request->get('nombre');
+        
+        // 2) Recuperar la Entidad de la BD
+        $editorial = $editorialRepository->find($id);
+
+        // 3) Actualizar los valores de los campos recuperados
+        $editorial->setNombre($nombre);
+        
+        // 4) Persistir los cambios
+        $em->persist($editorial);
+        
+        try {
+            $editorial->getId();
+            $em->flush();
+        } catch(\Exception $ex) {
+            $ex->getMessage();
+            $ex->getCode();
+            $ex->getTraceAsString();
+        }
+
+        // 5) redirigir al formulario
         return $this->redirectToRoute("editoriales");
     }
 
