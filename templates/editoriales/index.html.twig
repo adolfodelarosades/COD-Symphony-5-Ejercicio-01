@@ -22,7 +22,10 @@
         <tr>
             <td> {{ editorial.id }}</td>
             <td> {{ editorial.nombre }}</td>
-            <td><a class="nav-link" href="{{ path('editorial_detalle', {id: editorial.id}) }}"><i class="fa fa-search" style="font-size:24px;color:grey;"></i></a></td>
+            <td>
+              <a href="{{ path('editorial_detalle', {id: editorial.id}) }}"><i class="fa fa-search" style="font-size:24px;color:grey;"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <a href="{{ path('editorial_delete', {id: editorial.id}) }}"><i class="fa fa-trash-o" style="font-size:24px;color:grey;"></i></a>
+            </td>
         </tr>
         {% endfor %}
     </tbody>
