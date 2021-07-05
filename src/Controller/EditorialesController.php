@@ -20,4 +20,22 @@ class EditorialesController extends AbstractController
             'editoriales' => $editoriales
         ]);
     }
+
+    /**
+     * @Route("/editoriales/{id}", name="editorial_detalle")
+     */
+    public function ver($id, EditorialRepository $editorialRepository): Response
+    {
+        $editorial = $editorialRepository->find($id);
+        
+        if(!$editorial) {
+            return $this->render('comunes/recurso-no-encontrado.html.twig', [
+                'mensaje' => 'Esta Editorial No Existe.'
+            ]);
+        }
+
+        return $this->render('editoriales/detalle.html.twig', [
+            'editorial' => $editorial
+        ]);
+    }
 }

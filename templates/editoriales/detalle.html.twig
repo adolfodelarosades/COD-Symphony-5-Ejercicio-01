@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Editorial{% endblock %}
+
+{% block body %}
+  {{ include('comunes/_menu.html.twig') }}  
+  <main class="container py-4">
+    <h1 class="text-center">Editorial</h1>
+
+    {% dump editorial %} <!-- Lo saca a la consola-->
+    
+    <p> </p>
+    <div class="text-right">
+      <a class="btn btn-secondary" href="{{ path('editoriales')}}" role="button">Regresar</a>
+    </div>
+    <p> </p>
+    <table class="table ">
+    <tbody>
+        <tr>
+            <th scope="col">ID:</th><td> {{ editorial.id }}</td>
+        </tr>
+        <tr>
+            <th scope="col">Nombre:</th><td> {{ editorial.nombre }}</td>            
+        </tr>        
+    </tbody>
+    </table>
+  </main>
+{% endblock %}

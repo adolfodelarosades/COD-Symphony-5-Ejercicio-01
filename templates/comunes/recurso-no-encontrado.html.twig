@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Fondos{% endblock %}
+
+{% block body %}
+  {{ include('comunes/_menu.html.twig') }}    
+  <main class="container py-4">
+    <h1 class="text-center alert alert-danger">{{mensaje}}</h1>
+  </main>
+{% endblock %}
