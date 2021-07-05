@@ -2,9 +2,11 @@
 
 namespace App\Controller;
 
+use App\Entity\Editorial;
 use App\Repository\EditorialRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -20,6 +22,45 @@ class EditorialesController extends AbstractController
         return $this->render('editoriales/index.html.twig', [
             'editoriales' => $editoriales
         ]);
+    }
+
+    /* EL ORDEN EN QUE SE PONEN LAS ACCIONES IMPORTA */
+    /**
+     * @Route("/editoriales/nueva/", name="editorial_nueva")
+     */
+    public function nueva(EditorialRepository $editorialRepository, EntityManagerInterface $em, Request $request): Response
+    {
+        return $this->render('editoriales/nueva.html.twig', [
+            
+        ]);
+    }
+
+    /**
+     * @Route("/create", name="editorial_create")
+     */
+    public function create(Request $request, EntityManagerInterface $em): Response
+    { 
+        // 1) recibir datos del formulario
+        $nombre = $request->request->get('nombre');
+        
+        // 2) dar de alta en bbdd 
+        $editorial = new Editorial ();
+        $editorial->setNombre($nombre);
+        
+
+        $em->persist($editorial);
+        
+        try {
+            $editorial->getId();
+            $em->flush();
+        } catch(\Exception $ex) {
+            $ex->getMessage();
+            $ex->getCode();
+            $ex->getTraceAsString();
+        }
+
+        // 3) redirigir al formulario
+        return $this->redirectToRoute("editoriales");
     }
 
     /**
