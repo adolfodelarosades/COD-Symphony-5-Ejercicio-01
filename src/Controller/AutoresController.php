@@ -45,10 +45,12 @@ class AutoresController extends AbstractController
         $nombre = $request->request->get('nombre');
         $tipo = $request->request->get('tipo');
         
+        dump("NOMBRE: " . $nombre . " TIPO: " . $tipo); 
+
         // 2) dar de alta en bbdd 
         $autor = new Autor();
         $autor->setNombre($nombre);
-        $autor->setNombre($tipo);
+        $autor->setTipo($tipo);
 
         $em->persist($autor);
         
@@ -56,7 +58,7 @@ class AutoresController extends AbstractController
             $em->flush();
             $autor->getId();
         } catch(\Exception $ex) {
-            $ex->getMessage();
+            dump($ex->getMessage());
             $ex->getCode();
             $ex->getTraceAsString();
         }

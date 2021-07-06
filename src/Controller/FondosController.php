@@ -138,7 +138,7 @@ class FondosController extends AbstractController
         $editorial = $editorialRepository->find($datosForm['editorialId']);
         $fondo->setEditorial($editorial);
 
-        $autoresIds = (array)$datosForm['autoresIds'];
+        $autoresIds = (array)$datosForm['autoresIds'];//El Cast se pone para que no chille en el foreach "Aun que funciona sin el cast"
         $fondo->removeAllAutores();
         foreach($autoresIds as $autorId) {
             $autor = $autorRepository->find($autorId);
