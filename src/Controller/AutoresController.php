@@ -26,9 +26,9 @@ class AutoresController extends AbstractController
 
     /* EL ORDEN EN QUE SE PONEN LAS ACCIONES IMPORTA */
     /**
-     * @Route("/autores/nueva/", name="autor_nuevo")
+     * @Route("/autores/nuevo/", name="autor_nuevo")
      */
-    public function nueva(AutorRepository $autorRepository, EntityManagerInterface $em, Request $request): Response
+    public function nuevo(AutorRepository $autorRepository, EntityManagerInterface $em, Request $request): Response
     {
         return $this->render('autores/nueva.html.twig', [
             

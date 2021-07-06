@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Fondo{% endblock %}
+
+{% block body %}
+  {{ include('comunes/_menu.html.twig') }}  
+  <main class="container py-4">
+    <h1 class="text-center">Fondo</h1>
+
+    {% dump fondo %} <!-- Lo saca a la consola-->
+    
+    <p> </p>
+    <div class="text-right">
+      <a class="btn btn-secondary" href="{{ path('fondos')}}" role="button">Regresar</a>
+    </div>
+    <p> </p>
+    <table class="table ">
+    <tbody>
+        <tr>
+            <th scope="col">ID:</th><td> {{ fondo.id }}</td>
+        </tr>
+        <tr>
+            <th scope="col">Título</th><td> {{ fondo.titulo }}</td>            
+        </tr>
+        <tr>
+            <th scope="col">ISBN</th><td> {{ fondo.isbn }}</td>            
+        </tr>
+        <tr>
+          <th scope="col">Autor(es)</th>
+          <td> 
+            {% for autor in fondo.autores %}
+              {{ autor.nombre }}<br/>
+            {% endfor %}
+          </td>            
+        </tr>
+        <tr>
+          <th scope="col">Editorial</th><td> {{ fondo.editorial.nombre }}</td>
+        </tr>
+        <tr>
+          <th scope="col">Edición</th><td> {{ fondo.edicion }}</td>
+        </tr>
+        <tr>
+            <th scope="col">Publicación</th><td> {{ fondo.publicacion }}</td>            
+        </tr>
+        <tr>
+            <th scope="col">Categoría</th><td> {{ fondo.categoria }}</td>            
+        </tr>
+    </tbody>
+    </table>
+  </main>
+{% endblock %}

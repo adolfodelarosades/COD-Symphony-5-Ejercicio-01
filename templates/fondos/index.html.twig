@@ -4,11 +4,15 @@
 
 {% block body %}
   {{ include('comunes/_menu.html.twig') }}    
-  <main class="container py-4">
+  <main class="container-fluid py-4">
     <h1 class="text-center">Fondos</h1>
 
     {% dump fondos %} <!-- Lo saca a la consola-->
     
+    <p> </p>
+    <div class="text-left">
+      <a class="btn btn-secondary" href="{{ path('fondo_nuevo')}}" role="button">Nuevo Fondo</a>
+    </div>
     <table class="table table-striped">
     <thead>
         <tr>
@@ -20,6 +24,7 @@
         <th scope="col">Edición</th>
         <th scope="col">Publicación</th>
         <th scope="col">Categoría</th>
+        <th scope="col">Acciones</th>
         </tr>
     </thead>
     <tbody>
@@ -37,6 +42,11 @@
             <td> {{ fondo.edicion }}</td>
             <td> {{ fondo.publicacion }}</td>
             <td> {{ fondo.categoria }}</td>
+            <td>
+              <a href="{{ path('fondo_detalle', {id: fondo.id}) }}"><i class="fa fa-search" style="font-size:24px;color:grey;"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <a href="{{ path('fondo_delete', {id: fondo.id}) }}"><i class="fa fa-trash-o" style="font-size:24px;color:grey;"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <a href="{{ path('fondo_modificar', {id: fondo.id}) }}"><i class="fa fa-pencil" style="font-size:24px;color:grey;"></i></a>
+            </td>
         </tr>
         {% endfor %}
     </tbody>

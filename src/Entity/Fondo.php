@@ -160,4 +160,11 @@ class Fondo
 
         return $this;
     }
+
+    public function removeAllAutores(): self
+    {
+        $this->autores = new ArrayCollection();
+
+        return $this;
+    }
 }
