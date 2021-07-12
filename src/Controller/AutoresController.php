@@ -56,11 +56,18 @@ class AutoresController extends AbstractController
         
         try {
             $em->flush();
-            $autor->getId();
+            $this->addFlash(
+                'success',
+                'Autor ' . $autor->getId() . ' creado correctamente!'
+            );
         } catch(\Exception $ex) {
             dump($ex->getMessage());
             $ex->getCode();
             $ex->getTraceAsString();
+            $this->addFlash(
+                'danger',
+                $ex->getMessage()
+            );
         }
 
         // 3) redirigir al formulario
@@ -107,11 +114,18 @@ class AutoresController extends AbstractController
         
         try {
             $em->flush();
-            $autor->getId();
+            $this->addFlash(
+                'success',
+                'Autor ' . $autor->getId() . ' actualizado correctamente!'
+            );
         } catch(\Exception $ex) {
             $ex->getMessage();
             $ex->getCode();
             $ex->getTraceAsString();
+            $this->addFlash(
+                'danger',
+                $ex->getMessage()
+            );
         }
 
         // 5) redirigir al formulario
@@ -149,7 +163,21 @@ class AutoresController extends AbstractController
             ]);
         }else{
             $em->remove($autor);
-            $em->flush();
+            try {
+                $em->flush();
+                $this->addFlash(
+                    'success',
+                    'Autor ' . $id . ' eliminado correctamente!'
+                );
+            } catch(\Exception $ex) {
+                $ex->getMessage();
+                $ex->getCode();
+                $ex->getTraceAsString();
+                $this->addFlash(
+                    'danger',
+                    $ex->getMessage()
+                );
+            }
         }
         
         return $this->redirectToRoute('autores');

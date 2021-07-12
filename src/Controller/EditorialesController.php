@@ -52,11 +52,18 @@ class EditorialesController extends AbstractController
         
         try {
             $em->flush();
-            $editorial->getId();
+            $this->addFlash(
+                'success',
+                'Editorial ' . $editorial->getId() . ' creada correctamente!'
+            );
         } catch(\Exception $ex) {
             $ex->getMessage();
             $ex->getCode();
             $ex->getTraceAsString();
+            $this->addFlash(
+                'danger',
+                $ex->getMessage()
+            );
         }
 
         // 3) redirigir al formulario
@@ -100,12 +107,19 @@ class EditorialesController extends AbstractController
         $em->persist($editorial);
         
         try {
-            $editorial->getId();
             $em->flush();
+            $this->addFlash(
+                'success',
+                'Editorial ' . $editorial->getId() . ' actualizada correctamente!'
+            );
         } catch(\Exception $ex) {
             $ex->getMessage();
             $ex->getCode();
             $ex->getTraceAsString();
+            $this->addFlash(
+                'danger',
+                $ex->getMessage()
+            );
         }
 
         // 5) redirigir al formulario
@@ -143,18 +157,23 @@ class EditorialesController extends AbstractController
             ]);
         }else{
             $em->remove($editorial);
-            $em->flush();
+            
+            try {
+                $em->flush();
+                $this->addFlash(
+                    'success',
+                    'Editorial ' . $id . ' eliminada correctamente!'
+                );
+            } catch(\Exception $ex) {
+                $ex->getMessage();
+                $ex->getCode();
+                $ex->getTraceAsString();
+                $this->addFlash(
+                    'danger',
+                    $ex->getMessage()
+                );
+            }
         }
-        
-        /* En lugar de repetir lo que ya hace una acción REDIRIGIMOS
-
-        $editoriales = $editorialRepository->findAll();
-
-        return $this->render('editoriales/index.html.twig', [
-            'editoriales' => $editoriales
-        ]);
-        
-        */
 
         return $this->redirectToRoute('editoriales');
     }

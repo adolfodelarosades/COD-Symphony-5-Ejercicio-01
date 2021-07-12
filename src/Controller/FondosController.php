@@ -74,11 +74,18 @@ class FondosController extends AbstractController
         $em->persist($fondo);
         try {
             $em->flush();
-            $fondo->getId();
+            $this->addFlash(
+                'success',
+                'Fondo ' . $fondo->getId() . ' creado correctamente!'
+            );
         } catch(\Exception $ex) {
-            $ex->getMessage();
+            dump($ex->getMessage());
             $ex->getCode();
             $ex->getTraceAsString();
+            $this->addFlash(
+                'danger',
+                $ex->getMessage()
+            );
         }
 
         // 3) redirigir al formulario
@@ -150,11 +157,18 @@ class FondosController extends AbstractController
 
         try {
             $em->flush();
-            $fondo->getId();
+            $this->addFlash(
+                'success',
+                'Fondo ' . $fondo->getId() . ' actualizado correctamente!'
+            );
         } catch(\Exception $ex) {
             $ex->getMessage();
             $ex->getCode();
             $ex->getTraceAsString();
+            $this->addFlash(
+                'danger',
+                $ex->getMessage()
+            );
         }
 
         // 5) redirigir al formulario
@@ -199,7 +213,21 @@ class FondosController extends AbstractController
             ]);
         }else{
             $em->remove($fondo);
-            $em->flush();
+            try {
+                $em->flush();
+                $this->addFlash(
+                    'success',
+                    'Fondo ' . $id . ' eliminado correctamente!'
+                );
+            } catch(\Exception $ex) {
+                $ex->getMessage();
+                $ex->getCode();
+                $ex->getTraceAsString();
+                $this->addFlash(
+                    'danger',
+                    $ex->getMessage()
+                );
+            }
         }
         
         return $this->redirectToRoute('fondos');
