@@ -33,4 +33,18 @@ class SecurityController extends AbstractController
     {
         throw new \LogicException('This method can be blank - it will be intercepted by the logout key on your firewall.');
     }
+
+    /**
+     * @Route("/login-json", name="login-json", methods={"POST"})
+     */
+    public function loginjson()
+    {
+        $user = $this->getUser();
+        return $this->json([
+            'username' => $user->getUserIdentifier(),
+            'roles' => $user-> getRoles(),
+            'id' => $user->getId(),
+            'token' => 'vp8395f4h39gp9w37wh94g7hg3gonjs8ro8'
+        ]);
+    }
 }
