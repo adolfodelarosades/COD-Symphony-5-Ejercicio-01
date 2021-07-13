@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Editorial;
 use App\Repository\EditorialRepository;
+use App\Servicios\EditorialManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -38,10 +39,13 @@ class EditorialesController extends AbstractController
     /**
      * @Route("/editoriales/create", name="editorial_create")
      */
-    public function create(Request $request, EntityManagerInterface $em): Response
+    public function create(Request $request, EntityManagerInterface $em, EditorialManager $editorialManager): Response
     { 
         // 1) recibir datos del formulario
         $nombre = $request->request->get('nombre');
+
+        // 2) Llamar al Servicio que se ocupa de dar de alta en la bbdd
+        //$editorialManager->createEditorial($nombre);
         
         // 2) dar de alta en bbdd 
         $editorial = new Editorial ();
