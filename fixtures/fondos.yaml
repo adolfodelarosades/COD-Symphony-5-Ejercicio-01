@@ -1,0 +1,40 @@
+parameters:
+    hash: $2y$13$KI/2bbjTMVrEmc.wtVe7dOelSDPyNaoiDl.zfwKZAqe82rz0yJDiW
+
+App\Entity\User:
+    user_admin:
+        email: admin@admin.com
+        roles: ["ROLE_ADMIN"]
+        password: <{hash}>
+    
+    user_adolfo_admin:
+        email: adolfoAdmin@gmail.com
+        roles: ["ROLE_ADMIN"]
+        password: <{hash}>
+
+    user_carlos:
+        email: adolfo@gmail.com
+        roles: []
+        password: <{hash}>
+
+App\Entity\Editorial:
+    editorial_{1..100}:
+        nombre: <company()>
+
+App\Entity\Autor:
+    autor_{1..500}:
+        nombre: <name()>
+        tipo: 'PERSONA'
+    autor_{501..600}:
+        nombre: <company()>
+        tipo: 'ENTIDAD'
+
+App\Entity\Fondo:
+    fondo_{1..1000}:
+        titulo: <sentence()>
+        isbn: <isbn13()>
+        edicion: <numberBetween(1940, 2021)>
+        publicacion: <numberBetween(1940, 2021)>
+        categoria: <word()>
+        editorial: '@editorial_*'
+        autores: '<numberBetween(1, 3)>x @autor_*'
