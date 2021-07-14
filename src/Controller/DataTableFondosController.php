@@ -30,7 +30,8 @@ class DataTableFondosController extends AbstractController
                 $fondo->getTitulo(),
                 $fondo->getIsbn(),
                 $fondo->getEdicion(),
-                $fondo->getPublicacion()
+                $fondo->getPublicacion(),
+                $fondo->getEditorial()->getNombre()
             ];
             $fondosArray[] = $fondoArray;
         }

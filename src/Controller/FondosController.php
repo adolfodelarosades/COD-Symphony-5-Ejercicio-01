@@ -19,8 +19,8 @@ class FondosController extends AbstractController
      */
     public function index(FondoRepository $fondoRepository): Response
     {
-        $fondos = $fondoRepository->findAll();
-
+        //$fondos = $fondoRepository->findAll();
+        $fondos = $fondoRepository->findAllWithAutoresAndEditoriales();
         return $this->render('fondos/index.html.twig', [
             'fondos' => $fondos
         ]);

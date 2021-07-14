@@ -19,6 +19,24 @@ class FondoRepository extends ServiceEntityRepository
         parent::__construct($registry, Fondo::class);
     }
 
+    /**
+     * @return Fondo[]
+     */
+    public function findAllWithAutoresAndEditoriales(): array
+    {
+        $entityManager = $this->getEntityManager();
+
+        $query = $entityManager->createQuery(
+            'SELECT f, a, e
+            FROM App\Entity\Fondo f
+            JOIN f.autores a
+            JOIN f.editorial e
+            '
+        );
+
+        // returns an array of Product objects
+        return $query->getResult();
+    }
     // /**
     //  * @return Fondo[] Returns an array of Fondo objects
     //  */
