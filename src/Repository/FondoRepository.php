@@ -54,6 +54,45 @@ class FondoRepository extends ServiceEntityRepository
         $query = $qb->getQuery();
         return $query->getResult();
     }
+
+
+    /**
+     * @return array Returns an array asociativo
+     */
+    public function findAllWithAutoresAndEditorialesSQL()
+    {
+        $conn = $this->getEntityManager()->getConnection();
+
+        $sql = '
+        SELECT f0_.id AS id, 
+               f0_.titulo AS titulo, 
+               f0_.isbn AS isbn, 
+               f0_.edicion AS edicion, 
+               f0_.publicacion AS publicacion, 
+               f0_.categoria AS categoria, 
+               f0_.editorial_id AS editorial_id,
+               
+               a1_.id AS id_autor, 
+               a1_.nombre AS nombre_autor, 
+               a1_.tipo AS tipo, 
+               
+               e2_.id AS id_editorial, 
+               e2_.nombre AS nombre_editorial
+               
+        FROM fondo f0_ 
+            INNER JOIN fondo_autor f3_ ON f0_.id = f3_.fondo_id 
+            INNER JOIN autor a1_ ON a1_.id = f3_.autor_id 
+            INNER JOIN editorial e2_ ON f0_.editorial_id = e2_.id
+        ORDER BY id
+        ;
+        ';
+        dump($sql);
+        $stmt = $conn->prepare($sql);
+        $result = $stmt->executeQuery();
+
+        // returns an array of arrays (i.e. a raw data set)
+        return $result->fetchAllAssociative();
+    }
     // /**
     //  * @return Fondo[] Returns an array of Fondo objects
     //  */
