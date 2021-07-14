@@ -37,6 +37,23 @@ class FondoRepository extends ServiceEntityRepository
         // returns an array of Product objects
         return $query->getResult();
     }
+
+
+   /**
+     * @return Fondo[] Returns an array of Fondo objects
+     */
+    public function findAllWithAutoresAndEditorialesBuilder()
+    {
+        $qb = $this->createQueryBuilder('f')
+            ->join('f.autores', 'a')
+            ->addSelect('a')
+            ->join('f.editorial', 'e')
+            ->addSelect('e');
+            // ->setMaxResults(10)
+
+        $query = $qb->getQuery();
+        return $query->getResult();
+    }
     // /**
     //  * @return Fondo[] Returns an array of Fondo objects
     //  */
