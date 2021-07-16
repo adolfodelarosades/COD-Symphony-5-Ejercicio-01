@@ -1,11 +1,36 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <a class="navbar-brand" href="#">FONDOS</a>
+  <a class="navbar-brand" href="{{path('root')}}">{{ 'FONDOS' | trans }}</a>
   <ul class="navbar-nav mr-auto">
     <li class="nav-item">
-        <a class="nav-link" href="{{path('about')}}">Quiénes somos</a>
+        <a class="nav-link" href="{{path('about')}}">{{ 'Quiénes somos' | trans }}</a>
+    </li>
+  </ul>
+  
+  <ul class="nav navbar-nav navbar-right">
+    <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        {% if app.request.locale == 'es' %}
+          <img src="{{ asset('images/black.png') }}" class="flag16 flag-es" alt="{{ 'Español' | trans}}" /> {{ 'Español' | trans}}
+        {% elseif app.request.locale == 'en' %}
+          <img src="{{ asset('images/black.png') }}" class="flag16 flag-us" alt="{{ 'Inglés' | trans}}" /> {{ 'Inglés' | trans}} 
+        {% else %}
+   
+        {% endif %}
+      </a>
+      <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+        {% if app.request.locale == 'es' %}
+          <a class="dropdown-item active" href="{{ path('root', {_locale: 'es'}) }}"><img src="{{ asset('images/black.png') }}" class="flag flag-es" alt="{{ 'Español' | trans}}" /> {{ 'Español' | trans}}</a>
+          <a class="dropdown-item" href="{{ path('root', {_locale: 'en'}) }}"><img src="{{ asset('images/black.png') }}" class="flag flag-us" alt="{{ 'Inglés' | trans}}" /> {{ 'Inglés' | trans}}</a>
+        {% elseif app.request.locale == 'en' %}
+          <a class="dropdown-item" href="{{ path('root', {_locale: 'es'}) }}"><img src="{{ asset('images/black.png') }}" class="flag flag-es" alt="{{ 'Español' | trans}}" /> {{ 'Español' | trans}}</a>
+          <a class="dropdown-item active" href="{{ path('root', {_locale: 'en'}) }}"><img src="{{ asset('images/black.png') }}" class="flag flag-us" alt="{{ 'Inglés' | trans}}" /> {{ 'Inglés' | trans}}</a>
+        {% else %}
+   
+        {% endif %}
+      </div>
     </li>
   </ul>
   <form class="form-inline" action="{{path('app_login')}}">
-    <button class="btn btn-outline-secondary my-2 my-sm-0" type="submit">Login</button>
+    <button class="btn btn-outline-secondary my-2 my-sm-0" type="submit">{{ 'Acceso' | trans }}</button>
   </form>
 </nav>

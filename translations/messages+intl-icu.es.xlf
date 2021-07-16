@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file source-language="en" target-language="es" datatype="plaintext" original="file.ext">
+    <header>
+      <tool tool-id="symfony" tool-name="Symfony"/>
+    </header>
+    <body>
+      <trans-unit id="M..eA39" resname="Fondos">
+        <source>Fondos</source>
+        <target>Fondos</target>
+      </trans-unit>
+      <trans-unit id="IuTC2oS" resname="Gestión de Fondos">
+        <source>Gestión de Fondos</source>
+        <target>Gestión de Fondos</target>
+      </trans-unit>
+      <trans-unit id="VjAbrwg" resname="Libros, Revistas, Documentales, Videos, Películas CDs, ...">
+        <source>Libros, Revistas, Documentales, Videos, Películas CDs, ...</source>
+        <target>Libros, Revistas, Documentales, Videos, Películas CDs, ...</target>
+      </trans-unit>
+      <trans-unit id="6bHiLZ_" resname="Quiénes somos">
+        <source>Quiénes somos</source>
+        <target>Quiénes somos</target>
+      </trans-unit>
+      <trans-unit id="v5BKvBZ" resname="Acceso">
+        <source>Acceso</source>
+        <target>Acceso</target>
+      </trans-unit>
+      <trans-unit id="TvNyGT6" resname="Has iniciado sesión como">
+        <source>Has iniciado sesión como</source>
+        <target>Has iniciado sesión como</target>
+      </trans-unit>
+      <trans-unit id="vm2GBYC" resname="Por favor, registrese">
+        <source>Por favor, registrese</source>
+        <target>Por favor, registrese</target>
+      </trans-unit>
+      <trans-unit id="7GTcMKS" resname="Correo electrónico">
+        <source>Correo electrónico</source>
+        <target>Correo electrónico</target>
+      </trans-unit>
+      <trans-unit id="o4mmON7" resname="Contraseña">
+        <source>Contraseña</source>
+        <target>Contraseña</target>
+      </trans-unit>
+      <trans-unit id="uZWWWSy" resname="Recuérdame">
+        <source>Recuérdame</source>
+        <target>Recuérdame</target>
+      </trans-unit>
+      <trans-unit id="jVGLtl6" resname="Iniciar sesión">
+        <source>Iniciar sesión</source>
+        <target>Iniciar sesión</target>
+      </trans-unit>
+      <trans-unit id="60IFi.M" resname="¿Necesito una cuenta? ¡Inscribirse!">
+        <source>¿Necesito una cuenta? ¡Inscribirse!</source>
+        <target>¿Necesito una cuenta? ¡Inscribirse!</target>
+      </trans-unit>
+      <trans-unit id="z0mTu2Q" resname="FONDOS">
+        <source>FONDOS</source>
+        <target>FONDOS</target>
+      </trans-unit>
+      <trans-unit id="lLOCthu" resname="Español">
+        <source>Español</source>
+        <target>Español</target>
+      </trans-unit>
+      <trans-unit id="SLCXiMc" resname="Inglés">
+        <source>Inglés</source>
+        <target>Inglés</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

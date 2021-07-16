@@ -1,19 +1,19 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Fondos{% endblock %}
+{% block title %}{{ 'Fondos' | trans }}{% endblock %}
 
 {% block stylesheets %}
   {{ parent() }}
-  <link rel="stylesheet" type="text/css" href="/css/styles.css">
+  <link rel="stylesheet" type="text/css" href="{{ asset('css/styles.css') }}">
 {% endblock %}
 
 {% block body %}
 {{ include('comunes/_menu_inicial.html.twig') }}
 <main class="container">
   <div class="starter-template text-center py-5 px-3">
-    <h1>Gestión de Fondos</h1>
-    <p class="lead">Libros, Revistas, Documentales, Videos, Películas CDs, ...</p>
-    <img src="images/libros.jpg" class="img-fluid rounded-circle" width="60%" height="60%" alt="...">
+    <h1>{{ 'Gestión de Fondos' | trans }}</h1>
+    <p class="lead">{{ 'Libros, Revistas, Documentales, Videos, Películas CDs, ...' | trans}}</p>
+    <img src="{{ asset('images/libros.jpg') }}" class="img-fluid rounded-circle" width="60%" height="60%" alt="...">
   </div>
 </main>
 {{ include('comunes/_footer_inicial.html.twig') }}

@@ -5,3 +5,22 @@
   height:60px;
   width:100%;
 }
+
+.flag {
+  width: 32px;
+  height: 32px;
+  background:url(/images/flags.png) no-repeat
+}
+.flag.flag-es {background-position: -32px 0}
+.flag.flag-gb {background-position: 0 -32px}
+.flag.flag-us {background-position: -32px -32px}
+
+.flag16 {
+  width: 16px;
+  height: 16px;
+  background:url(/images/flags16.png) no-repeat
+}
+
+.flag16.flag-es {background-position: -16px 0}
+.flag16.flag-gb {background-position: 0 -16px}
+.flag16.flag-us {background-position: -16px -16px}

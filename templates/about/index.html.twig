@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Quiénes somos{% endblock %}
+{% block title %}{{'Quiénes somos' | trans }}{% endblock %}
 
 {% block stylesheets %}
   {{ parent() }}
@@ -11,9 +11,9 @@
 {{ include('comunes/_menu_inicial.html.twig') }}
 <main class="container my-4">
   
-  <h1>Quiénes somos</h1>
+  <h1>{{'Quiénes somos' | trans }}</h1>
 
-  <h3>Libros, Revistas, Documentales, Videos, Películas CDs, ...</h3>
+  <h3>{{ 'Libros, Revistas, Documentales, Videos, Películas CDs, ...' | trans }}</h3>
   
   <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin malesuada egestas risus hendrerit tincidunt. Nunc eu semper justo, non ultricies nibh. Sed a viverra lorem. Donec sed porttitor turpis, eu cursus tellus. Proin dignissim lorem et eros aliquam faucibus. Suspendisse fermentum, erat et vulputate dapibus, augue purus maximus dolor, vitae gravida eros ex vehicula felis. Vestibulum feugiat nibh urna, fringilla ultrices eros bibendum id. In mollis eleifend pulvinar. Nulla porttitor quis felis at ultricies. Integer sed mi sit amet est feugiat tempor. Phasellus a velit non ligula placerat maximus non sit amet orci. In a imperdiet felis.</p>
 

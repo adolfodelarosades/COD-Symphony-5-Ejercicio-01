@@ -49,9 +49,12 @@ security:
         # - { path: ^/admin, roles: ROLE_ADMIN }
         # - { path: ^/profile, roles: ROLE_USER }
         - { path: ^/$, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/en/, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/en/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/login-json, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/quienes-somos, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/en/quienes-somos, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/fondos_json, roles: ROLE_ADMIN }
         - { path: ^/, roles: ROLE_USER }
         #- { path: ^/fondos, roles: ROLE_USER }

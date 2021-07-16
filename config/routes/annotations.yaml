@@ -1,6 +1,10 @@
 controllers:
     resource: ../../src/Controller/
     type: annotation
+    prefix:
+        es: '' 
+        fr: '/fr'
+        en: '/en'
 
 kernel:
     resource: ../../src/Kernel.php
