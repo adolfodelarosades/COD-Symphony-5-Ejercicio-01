@@ -11,8 +11,8 @@ use Symfony\Component\Routing\Annotation\Route;
 class FondosPaginadosController extends AbstractController
 {
     #[Route('/fondos/paginados/{orderBy}/{page}', 
-            name: 'fondos_paginados', 
-            defaults: ['page'=>1, 'orderBy'=>'id']
+            name: 'fondos_paginados'/*, 
+            defaults: ['page'=>1, 'orderBy'=>'id']*/
             )]
     public function index($page, $orderBy, FondoRepository $repo): Response
     {
