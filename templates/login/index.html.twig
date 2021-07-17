@@ -4,8 +4,8 @@
 
 {% block stylesheets %}
   {{ parent() }}
-  <link rel="stylesheet" type="text/css" href="css/styles.css">
-  <link rel="stylesheet" type="text/css" href="css/styles-plantilla.css">
+  <link rel="stylesheet" type="text/css" href="{{ asset('css/styles.css') }}">
+  <link rel="stylesheet" type="text/css" href="{{ asset('css/styles-plantilla.css') }}">
 {% endblock %}
 
 {% block body %}

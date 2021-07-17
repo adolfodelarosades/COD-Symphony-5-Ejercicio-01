@@ -24,3 +24,14 @@
 .flag16.flag-es {background-position: -16px 0}
 .flag16.flag-gb {background-position: 0 -16px}
 .flag16.flag-us {background-position: -16px -16px}
+
+.flex-wrap.pagination{
+  margin-left: 3px;
+  .page-item {
+    margin-bottom: 5px;
+  }
+
+  .page-item:first-child{
+    margin-left: -3px;
+  }
+}
