@@ -59,7 +59,7 @@ class FondoRepository extends ServiceEntityRepository
     /**
      * @return Fondo[] Returns an array of Fondo objects
      */
-    public function findAllWithAutoresAndEditorialesPaginado(int $page, string $orderBy, int $itemsPerPage = 10)
+    public function findAllWithAutoresAndEditorialesPaginado(int $page, string $orderBy, string $order, int $itemsPerPage = 10)
     {
         $startAt = ($page - 1) * $itemsPerPage;
         $qb = $this->createQueryBuilder('f')
@@ -67,10 +67,24 @@ class FondoRepository extends ServiceEntityRepository
             ->addSelect('a')
             ->leftJoin('f.editorial', 'e')
             ->addSelect('e')
-            ->orderBy('f.' . $orderBy)
+            //->orderBy('f.' . $orderBy, $order)
             ->setFirstResult($startAt)
             ->setMaxResults($itemsPerPage)
         ;
+
+        switch ($orderBy) {
+            case 'editorial':
+                $field = 'e.nombre';
+                break;
+            case 'autor':
+                $field = 'a.nombre';
+                break;
+            default: 
+                $field = 'f.' . $orderBy;
+        }
+
+        $qb = $qb->orderBy($field, $order);
+        
         $query = $qb->getQuery();
 
         return new Paginator($query);

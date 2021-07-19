@@ -4,16 +4,15 @@
 
 {% block stylesheets %}
   {{ parent() }}
-  <link rel="stylesheet" type="text/css" href="{{ asset('css/styles.css') }}">
+  <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css">
 {% endblock %}
-
 
 {% block body %}
   {{ include('comunes/_menu.html.twig') }}    
   <main class="container-fluid py-4">
     <h1 class="text-center">Fondos</h1>
 
-    <h2>Página: {{paginaActual}} de {{numTotalPaginas}} | Ordenar por: {{orderBy}}</h2>
+    <h2>Página: {{paginaActual}} de {{numTotalPaginas}} | Ordenar por: <span id="textoCampo"></span></h2>
 
     {{ include('comunes/_paginacion.html.twig') }}
     <p> </p>
@@ -22,18 +21,19 @@
     </div>
     <p> </p>
   
-    <table class="table table-striped">
+    <table class="dataTable">
     <thead>
       <tr>
-        <th scope="col">ID</th>
-        <th scope="col">Título</th>
-        <th scope="col">ISBN</th>
-        <th scope="col">Autor(es)</th>
-        <th scope="col">Editorial</th>
-        <th scope="col">Edición</th>
-        <th scope="col">Publicación</th>
-        <th scope="col">Categoría</th>
-        <th scope="col">Acciones</th>
+        <!--<th class="">ID <img src="{{ asset('images/sort_desc.png')}}" /> </th>-->
+        <th id="id" class="sorting sorting_asc">ID</th>
+        <th id="titulo" class="sorting sorting_both">Título</th>
+        <th id="isbn" class="sorting sorting_both">ISBN</th>
+        <th id="autor" class="sorting sorting_both">Autor(es)</th>
+        <th id="editorial" class="sorting sorting_both">Editorial</th>
+        <th id="edicion" class="sorting sorting_both">Edición</th>
+        <th id="publicacion" class="sorting sorting_both">Publicación</th>
+        <th id="categoria" class="sorting sorting_both">Categoría</th>
+        <th class="sorting sorting_both">Acciones</th>
       </tr>
     </thead>
     <tbody>
@@ -66,4 +66,60 @@
     </table>
     {{ include('comunes/_paginacion.html.twig') }}
   </main>
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+      
+      {% set cabeceras = ['id', 'titulo', 'isbn', 'autor', 'editorial', 'edicion', 'publicacion', 'categoria'] %}
+
+      //código a ejecutar cuando el DOM está listo para recibir acciones
+      document.addEventListener("DOMContentLoaded", function(event) {
+        //Pone la marca de orden adecuada al campo que se este usando
+        {% for cabecera in cabeceras %}
+          {% if cabecera == orderBy  %} 
+            elementoSeleccionado = document.getElementById('{{ orderBy }}');
+
+            var textoCampo = document.getElementById('textoCampo');
+            textoCampo.innerText = elementoSeleccionado.innerText;
+            var clases= elementoSeleccionado.getAttribute('class');
+            var ordenActual = '{{ order }}';
+            if( ordenActual == "ASC"){
+              clasesAux = clases.replace('sorting_desc', 'sorting_asc');
+              clasesAux = clasesAux.replace('sorting_both', 'sorting_asc');
+            }else{
+              clasesAux = clases.replace('sorting_asc', 'sorting_desc');
+              clasesAux = clasesAux.replace('sorting_both', 'sorting_desc');
+            }            
+            elementoSeleccionado.setAttribute('class', clasesAux);
+          {% else %}
+            elementoRecorrido = document.getElementById('{{ cabecera }}');
+            elementoRecorrido.setAttribute('class', 'sorting sorting_both');
+          {% endif %}
+        {% endfor %}
+      });
+
+      //Crea los Listeners para las cabeceras existentes
+      {% for cabecera in cabeceras %}
+        document.getElementById("{{cabecera}}").addEventListener("click", function( event ) {
+          var clases= this.getAttribute('class');
+          if(clases.includes('sorting_desc')){
+            clasesAux = clases.replace('sorting_desc', 'sorting_asc');
+            orderAux = 'ASC';
+          }else if(clases.includes('sorting_asc')){          
+            clasesAux = clases.replace('sorting_asc', 'sorting_desc');
+            orderAux = 'DESC';
+          }else{
+            clasesAux = clases.replace('sorting_both', 'sorting_asc');
+            orderAux = 'ASC';
+          }
+          this.setAttribute('class', clasesAux);
+          
+          var url = "{{path('fondos_paginados', {page: paginaActual, orderBy: 'CAMPO', order: 'ASC'} )}}";
+          url = url.replace("CAMPO", "{{cabecera}}");
+          url = url.replace("ASC", orderAux);
+          window.location = url;
+        }, false);
+      {% endfor %}
+    </script>
 {% endblock %}

@@ -19,7 +19,7 @@
         <a class="nav-link" href="{{ path('fondos_json')}}">Fondos DT</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="{{path('fondos_paginados', {page: 1, orderBy: 'id'} )}}">Fondos Paginado</a>
+        <a class="nav-link" href="{{path('fondos_paginados', {page: 1, orderBy: 'id', order: 'ASC'} )}}">Fondos Paginado</a>
       </li>
     </ul>
     <form class="form-inline" action="{{path('app_logout')}}">
