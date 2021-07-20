@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Error {{ status_code }}{% endblock %}
+
+{% block body %}
+{{ include('comunes/_menu.html.twig') }}
+<main class="container my-4">
+  
+  <h2>Recurso no encontrado:</h1>
+
+  <p>{{ exception.message }}</p>
+  
+</main>
+{% endblock %}

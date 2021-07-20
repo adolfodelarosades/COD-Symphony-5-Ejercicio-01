@@ -10,6 +10,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Routing\Annotation\Route;
 
 class FondosController extends AbstractController
@@ -191,9 +192,14 @@ class FondosController extends AbstractController
         $fondo = $fondoRepository->find($id);
         
         if(!$fondo) {
+            //throw new \Exception('Este Fondo No Existe.');
+            throw $this->createNotFoundException('Este Fondo No Existe.');
+            //throw new NotFoundHttpException('Este Fondo No Existe.');
+            /*
             return $this->render('comunes/recurso-no-encontrado.html.twig', [
                 'mensaje' => 'Este Fondo No Existe.'
             ]);
+            */
         }
 
         return $this->render('fondos/detalle.html.twig', [
